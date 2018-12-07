@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  producer:
+    image: php-mq
+    build: ./producer
+    ports:
+      - 8080:80
+    links:
+      - broker
+    volumes:
+      - "./producer/src/www:/var/www/html"
+  broker:
+    image: rabbitmq:3-management
+    ports:
+      - 80:15672
+  # consumer:
+  #   image: php-mq
+  #   build: ./consumer
+  #   ports:
+  #     - 8081:8081
