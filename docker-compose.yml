@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  producer:
-    image: php-mq
-    build: ./producer
+  console:
+    image: rabbitmq-demo-console
+    build: ./console
     command: wait-for-it.sh --timeout=30 broker:5672 -- apache2-foreground
     ports:
       - 8080:80
@@ -15,8 +15,3 @@ services:
     image: rabbitmq:3-management
     ports:
       - 80:15672
-  # consumer:
-  #   image: php-mq
-  #   build: ./consumer
-  #   ports:
-  #     - 8081:8081
