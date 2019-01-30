@@ -10,7 +10,7 @@ services:
     links:
       - broker
     volumes:
-      - "./producer/src/www:/var/www/html"
+      - "./console/src/www:/var/www/html"
   broker:
     image: rabbitmq:3-management
     ports:

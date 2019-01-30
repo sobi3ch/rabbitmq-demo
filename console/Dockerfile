@@ -1,7 +1,6 @@
 FROM php:7.2-apache
 
 ADD src/scripts/ /scripts/
+RUN /scripts/install-ext.sh
 ADD https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh /usr/local/bin/
-WORKDIR /scripts/
-ENV COMPOSER_ALLOW_SUPERUSER=1
-RUN ./install-ext.sh
+RUN chmod 755 /usr/local/bin/wait-for-it.sh
