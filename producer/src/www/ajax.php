@@ -22,7 +22,7 @@ if (isset($_POST['action'])) {
 function initialize(&$conn, &$channel) {
   $conn = new AMQPStreamConnection('broker', 5672, 'guest', 'guest');
   $channel = $conn->channel();
-  list($queue, $messageCount, $consumerCount) = $channel->queue_declare(QUEUE, true, false, false, false);
+  list($queue, $messageCount, $consumerCount) = $channel->queue_declare(QUEUE, false, false, false, false);
 
   return $messageCount;
 }
@@ -45,7 +45,7 @@ function consume() {
 
   if ($msgCount > 0) {
     $message = $channel->basic_get(QUEUE);
-    sleep(1); // dummy process time
+    // sleep(2); // Simulate heavy process time for each message
     $channel->basic_ack($message->delivery_info['delivery_tag']);
 
     $channel->close();

@@ -4,6 +4,7 @@ services:
   producer:
     image: php-mq
     build: ./producer
+    command: wait-for-it.sh --timeout=30 broker:5672 -- apache2-foreground
     ports:
       - 8080:80
     links:
