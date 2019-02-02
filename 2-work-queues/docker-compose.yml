@@ -1,12 +1,10 @@
-version: "3"
+version: '3'
 
 services:
-  console:
-    image: rabbitmq-demo-console
-    build: ./console
-    command: wait-for-it.sh --timeout=30 broker:5672 -- apache2-foreground
-    ports:
-      - 8080:80
+  worker:
+    image: rabbitmq-demo-worker
+    build: ./worker
+    command: wait-for-it.sh --timeout=30 broker:5672 -- echo 'run worker now..'
     links:
       - broker
     volumes:
