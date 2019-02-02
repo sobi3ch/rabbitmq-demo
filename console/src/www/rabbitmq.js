@@ -6,11 +6,17 @@ $(document).ready(function(){
         $.post(ajaxurl, data, function (response) {
             switch(clickBtnValue) {
               case 'produce':
-                $("#producer-list").append($("<li>").text(response));
+                var message='Raport #' + response;
+                $("#queue")
+                  .append(
+                    $("<li>")
+                      .attr('data-raport', response)
+                      .text(message)
+                    );
                 break;
               case 'consume':
                 if (response.length > 0) {
-                  $("#consumer-list").append($("<li>").text(response));
+                  $('[data-raport='+ response +']').remove();
                 } else {
                   alert('Queue is empty; Nothing to consume');
                 }

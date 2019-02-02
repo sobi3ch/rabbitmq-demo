@@ -29,20 +29,21 @@
 
 	<body>
 		<h1>RabbitMQ demo</h1>
+		<a href="http://localhost" target="_blank">Manage RabbitMQ</a> (user/pass: guest)
 		<h3>Send message</h3>
+
 		<input type="submit" class="button" name="produce" value="produce" />
 		<input type="submit" class="button" name="consume" value="consume" />
 
-		<table style="width:50%" id="data-table">
-		  <tr>
-		    <th>Produced</th>
-		    <th>Consumed</th> 
-		  </tr>
-		  <tr>
-		    <td><ul id="producer-list"></ul></td>
-		    <td><ul id="consumer-list"></ul></td>
-		  </tr>
-		</table>
+		<div>Just an example queue of reports to process</div>
+
+		<div>
+			<ul>
+				Raport queue
+				<ul id="queue"></ul>
+			</ul>
+		</div>
+
 	</body>
 
 </html>

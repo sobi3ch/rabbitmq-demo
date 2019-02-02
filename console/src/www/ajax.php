@@ -4,9 +4,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
-
 # settings
-define("QUEUE", "hello");
+define("QUEUE", "raports");
 
 if (isset($_POST['action'])) {
     switch ($_POST['action']) {
@@ -29,14 +28,20 @@ function initialize(&$conn, &$channel) {
 
 function produce() {
   initialize($connection, $channel);
-  $msg_body = 'Invoice #'. rand(1,10000);
+  session_start();
+  if(isset($_SESSION['raports_number'])) {
+   $_SESSION['raports_number']=$_SESSION['raports_number']+1;
+  } else {
+   $_SESSION['raports_number']=1;
+  }
+  $msg_body = $_SESSION['raports_number'];
   $msg = new AMQPMessage($msg_body);
   $channel->basic_publish($msg, '', QUEUE);
   
   $channel->close();
   $connection->close();
 
-  echo '"'. $msg_body . '" was produced';
+  echo $msg_body;
   exit;
 }
 
@@ -51,7 +56,7 @@ function consume() {
     $channel->close();
     $connection->close();
 
-    echo '"'. $message->body . "\" was consumed";
+    echo $message->body;
   }
   exit;
 }
