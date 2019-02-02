@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  console:
+    image: rabbitmq-demo-console
+    build: ./console
+    command: wait-for-it.sh --timeout=30 broker:5672 -- apache2-foreground
+    ports:
+      - 8080:80
+    links:
+      - broker
+    volumes:
+      - "./console/src/www:/var/www/html"
+  broker:
+    image: rabbitmq:3-management
+    ports:
+      - 80:15672

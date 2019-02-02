@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Send message</title>
+		<script src="jquery.min.js"></script>
+		<script src="rabbitmq.js"></script>
+		<style>
+			#data-table {
+				position: absolute;
+				right: 1em;
+				top: 2em;
+			}
+
+			table, th, td {
+			  border: 1px solid black;
+			  border-collapse: collapse;
+			}
+			
+			table > tbody > tr > td {
+				vertical-align: top;
+			}
+			
+			ul > li {
+				font-size: 12px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h1>RabbitMQ demo</h1>
+		<a href="http://localhost" target="_blank">Manage RabbitMQ</a> (user/pass: guest)
+		<h3>Send message</h3>
+
+		<input type="submit" class="button" name="produce" value="produce" />
+		<input type="submit" class="button" name="consume" value="consume" />
+
+		<div>Just an example queue of reports to process</div>
+
+		<div>
+			<ul>
+				Raport queue
+				<ul id="queue"></ul>
+			</ul>
+		</div>
+
+	</body>
+
+</html>
