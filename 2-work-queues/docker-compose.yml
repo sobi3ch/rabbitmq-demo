@@ -4,11 +4,12 @@ services:
   worker:
     image: rabbitmq-demo-worker
     build: ./worker
-    command: wait-for-it.sh --timeout=30 broker:5672 -- echo 'run worker now..'
+    command: wait-for-it.sh --timeout=30 broker:5672 -- php worker.php
     links:
       - broker
     volumes:
-      - "./console/src/www:/var/www/html"
+      - "./worker/src/code:/code"
+    working_dir: /code
   broker:
     image: rabbitmq:3-management
     ports:
