@@ -1,8 +1,12 @@
 # rabbitmq-demo
 
-1. clone resistory
-1. change dir `$ cd rabbitmq-demo/producer/src/www/`
-1. run `$ composer install` # obviously you need to have composer already installed
+## Requirements
+[composer](https://getcomposer.org/download/)
+
+## Instructions
+1. clone repository
+1. change dir `$ cd rabbitmq-demo/1-hello-world/`
+1. run `$ composer --working-dir=console/src/www/ install`
 1. run `docker-compose up -d`
 1. goto `http://localhost:8080`
 
