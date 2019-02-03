@@ -7,7 +7,7 @@ php-cli, [composer](https://getcomposer.org/download/)
 1. clone repository
 1. change dir `$ cd rabbitmq-demo/2-work-queues/`
 1. run `$ composer --working-dir=worker/src/code/ install`
-1. run `docker-compose up -d --scale worker=2 ; watch docker-compose logs -f worker`
+1. run `docker-compose up -d --scale worker=2 ; docker-compose logs -f worker`
 1. in another console run tasks `./produce-workload.sh 6`, but wait until you have message from workers similar to the following. 
 ```
 worker_1  | wait-for-it.sh: waiting 30 seconds for broker:5672
